@@ -1,746 +1,83 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nguyễn Thanh Nhật Minh | Portfolio</title>
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-
   <style>
-    :root {
-      --forest: #4F6656;
-      --sage: #73AFA3;
-      --leaf: #538666;
-      --mist: #7BBFD8;
-      --water: #298DB5;
-      --deep: #1A3E6C;
-      --cream: #F7FBFA;
-      --text: #183B45;
-    }
-
-    * {
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }
-
-    body {
-      margin: 0;
-      color: var(--text);
-      font-family: "Montserrat", sans-serif;
-      background:
-        radial-gradient(circle at 8% 4%, rgba(123,191,216,.35), transparent 24rem),
-        radial-gradient(circle at 92% 18%, rgba(115,175,163,.20), transparent 25rem),
-        var(--cream);
-    }
-
-    main {
-      position: relative;
-      z-index: 1;
-    }
-
-    .container {
-      width: min(1120px, calc(100% - 40px));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      position: absolute;
-      top: 26px;
-      left: 50%;
-      width: min(1120px, calc(100% - 40px));
-      display: flex;
-      justify-content: flex-end;
-      transform: translateX(-50%);
-      z-index: 10;
-    }
-
-    .languages {
-      display: flex;
-      gap: 6px;
-      padding: 5px;
-      border: 1px solid rgba(26,62,108,.12);
-      border-radius: 999px;
-      background: rgba(255,255,255,.72);
-      box-shadow: 0 8px 20px rgba(26,62,108,.08);
-      backdrop-filter: blur(8px);
-    }
-
-    .language-btn {
-      padding: 8px 12px;
-      border: 0;
-      border-radius: 999px;
-      background: transparent;
-      color: var(--forest);
-      font-family: inherit;
-      font-size: 13px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .language-btn.active {
-      color: white;
-      background: var(--deep);
-    }
-
-    .hero {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 1.1fr .9fr;
-      align-items: center;
-      gap: 64px;
-      padding: 100px 0 72px;
-    }
-
-    .eyebrow {
-      margin: 0;
-      color: var(--water);
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      margin: 16px 0;
-      color: var(--deep);
-      font-size: clamp(40px, 4.2vw, 64px);
-      line-height: .98;
-      letter-spacing: -3px;
-    }
-
-    .name span {
-      display: block;
-      white-space: nowrap;
-    }
-
-    .subtitle {
-      color: var(--forest);
-      font-size: clamp(20px, 2.2vw, 24px);
-      font-weight: 600;
-      line-height: 1.6;
-    }
-
-    .intro {
-      max-width: 655px;
-      margin-top: 24px;
-      font-size: 18px;
-      line-height: 1.85;
-    }
-
-    .line {
-      width: 84px;
-      height: 4px;
-      margin: 30px 0;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--leaf), var(--mist), var(--water));
-    }
-
-    .photo-wrap {
-      position: relative;
-      min-height: 480px;
-      display: grid;
-      place-items: center;
-    }
-
-    .photo-bg {
-      position: absolute;
-      width: min(420px, 88%);
-      aspect-ratio: 1 / 1.13;
-      border-radius: 48% 52% 42% 58% / 47% 43% 57% 53%;
-      background: linear-gradient(145deg, var(--sage), var(--water));
-      transform: rotate(7deg);
-    }
-
-    .profile-photo {
-      position: relative;
-      z-index: 1;
-      width: min(360px, 78%);
-      aspect-ratio: 3 / 4;
-      object-fit: cover;
-      object-position: center;
-      border: 8px solid rgba(255,255,255,.76);
-      border-radius: 180px 180px 32px 32px;
-      box-shadow: 0 24px 50px rgba(26,62,108,.25);
-    }
-
-    .quote {
-      position: absolute;
-      z-index: 2;
-      right: 0;
-      bottom: 28px;
-      max-width: 180px;
-      padding: 16px;
-      color: var(--deep);
-      border-radius: 16px;
-      background: rgba(255,255,255,.88);
-      box-shadow: 0 12px 30px rgba(26,62,108,.12);
-      font-size: 14px;
-      font-weight: 600;
-      line-height: 1.65;
-    }
-
-    .section {
-      padding: 104px 0;
-    }
-
-    .section-title {
-      margin: 12px 0 14px;
-      color: var(--deep);
-      font-size: clamp(30px, 3.5vw, 43px);
-      letter-spacing: -1.5px;
-    }
-
-    .section-lead {
-      max-width: 720px;
-      margin: 0;
-      font-size: 18px;
-      line-height: 1.85;
-    }
-
-    .timeline {
-      position: relative;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 18px;
-      margin-top: 48px;
-    }
-
-    .timeline::before {
-      content: "";
-      position: absolute;
-      top: 41px;
-      right: 10%;
-      left: 10%;
-      height: 2px;
-      background: linear-gradient(90deg, var(--forest), var(--mist), var(--water), var(--deep));
-    }
-
-    .year-btn {
-      position: relative;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      min-height: 166px;
-      padding: 0 10px;
-      border: 0;
-      background: transparent;
-      color: var(--text);
-      font-family: inherit;
-      text-align: center;
-      cursor: pointer;
-    }
-
-    .year-dot {
-      width: 84px;
-      height: 84px;
-      display: grid;
-      place-items: center;
-      border: 7px solid var(--cream);
-      border-radius: 50%;
-      background: var(--sage);
-      color: white;
-      box-shadow: 0 5px 14px rgba(26,62,108,.16);
-      font-size: 17px;
-      font-weight: 800;
-      transition: .25s ease;
-    }
-
-    .year-btn:nth-child(2) .year-dot { background: var(--leaf); }
-    .year-btn:nth-child(3) .year-dot { background: var(--water); }
-    .year-btn:nth-child(4) .year-dot { background: var(--deep); }
-
-    .year-btn:hover .year-dot,
-    .year-btn.active .year-dot {
-      transform: translateY(-8px) scale(1.07);
-    }
-
-    .year-summary {
-      font-size: 15px;
-      font-weight: 500;
-      line-height: 1.65;
-    }
-
-    .year-detail {
-      min-height: 112px;
-      margin-top: 36px;
-      padding: 28px 30px;
-      border-left: 5px solid var(--water);
-      border-radius: 0 18px 18px 0;
-      background: white;
-      box-shadow: 0 12px 30px rgba(26,62,108,.08);
-      font-size: 18px;
-      line-height: 1.85;
-    }
-
-    .year-detail strong {
-      color: var(--deep);
-    }
-
-    .year-detail.is-hidden {
-      display: none;
-    }
-
-    .visual-river {
-      display: grid;
-      grid-template-columns: 1.15fr .8fr 1.15fr;
-      gap: 18px;
-      margin: 0 0 32px;
-    }
-
-    .visual-card {
-      height: 285px;
-      margin: 0;
-      overflow: hidden;
-      border-radius: 28px;
-      box-shadow: 0 18px 38px rgba(26,62,108,.14);
-    }
-
-    .visual-card:nth-child(1) { margin-top: 32px; }
-    .visual-card:nth-child(3) { margin-top: 58px; }
-
-    .visual-card img {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-      transition: transform .55s ease;
-    }
-
-    .visual-card:hover img { transform: scale(1.06); }
-    .visual-card.portrait img { object-position: center 34%; }
-
-    .contact-box {
-      position: relative;
-      display: grid;
-      grid-template-columns: 1.25fr .75fr;
-      align-items: center;
-      gap: 54px;
-      padding: clamp(30px, 5vw, 56px);
-      border-radius: 30px;
-      color: white;
-      background: linear-gradient(135deg, var(--deep), var(--water));
-      overflow: hidden;
-    }
-
-    .contact-box::after {
-      content: "";
-      position: absolute;
-      right: -120px;
-      bottom: -170px;
-      width: 330px;
-      height: 330px;
-      border: 1px solid rgba(255,255,255,.24);
-      border-radius: 50%;
-      box-shadow: 0 0 0 38px rgba(255,255,255,.05), 0 0 0 76px rgba(255,255,255,.04);
-    }
-
-    .contact-copy,
-    .contact-details {
-      position: relative;
-      z-index: 1;
-    }
-
-    .contact-box h2 {
-      margin: 0 0 12px;
-      font-size: clamp(30px, 4vw, 44px);
-      letter-spacing: -1.5px;
-    }
-
-    .contact-box p {
-      max-width: 590px;
-      margin: 0;
-      color: rgba(255,255,255,.9);
-      font-size: 18px;
-      line-height: 1.9;
-    }
-
-    .contact-details {
-      display: grid;
-      gap: 14px;
-    }
-
-    .contact-item {
-      display: block;
-      padding: 18px 20px;
-      border: 1px solid rgba(255,255,255,.28);
-      border-radius: 18px;
-      color: white;
-      text-decoration: none;
-      background: rgba(255,255,255,.12);
-      transition: transform .25s ease, background .25s ease;
-    }
-
-    .contact-item:hover {
-      transform: translateY(-4px);
-      background: rgba(255,255,255,.2);
-    }
-
-    .contact-item span {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 1.3px;
-      opacity: .75;
-      text-transform: uppercase;
-    }
-
-    .contact-item strong {
-      font-size: 16px;
-      overflow-wrap: anywhere;
-    }
-
-    .canopy-art {
-      position: fixed;
-      z-index: 0;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: auto;
-      max-height: 310px;
-      object-fit: cover;
-      object-position: top center;
-      opacity: .7;
-      pointer-events: none;
-      transform-origin: top center;
-      animation: canopy-breeze 7s ease-in-out infinite alternate;
-    }
-
-    .stream-footer {
-      display: block;
-      width: 100%;
-      min-height: 185px;
-      margin-top: -10px;
-      object-fit: cover;
-      object-position: center bottom;
-      pointer-events: none;
-    }
-
-    @keyframes canopy-breeze {
-      from { transform: translateY(-3px) scale(1); }
-      to { transform: translateY(4px) scale(1.012); }
-    }
-
-    footer {
-      padding: 42px 0 52px;
-      color: var(--forest);
-      font-size: 15px;
-      line-height: 1.9;
-      text-align: center;
-    }
-
-    @media (max-width: 760px) {
-      .topbar { top: 16px; }
-
-      .hero {
-        grid-template-columns: 1fr;
-        gap: 24px;
-        padding-top: 90px;
-      }
-
-      .photo-wrap {
-        min-height: 380px;
-        grid-row: 1;
-      }
-
-      .quote { right: 4%; }
-
-      .timeline {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 24px 10px;
-      }
-
-      .timeline::before { display: none; }
-
-      .contact-box { grid-template-columns: 1fr; }
-
-      .visual-river {
-        grid-template-columns: 1fr;
-        margin-bottom: 0;
-      }
-
-      .visual-card,
-      .visual-card:nth-child(1),
-      .visual-card:nth-child(3) {
-        height: 240px;
-        margin-top: 0;
-      }
-
-      .name span { white-space: normal; }
-
-      .canopy-art { max-height: 180px; opacity: .52; }
-      .intro, .section-lead, .year-detail, .contact-box p { font-size: 16px; }
-      .year-summary { font-size: 13px; }
-      .stream-footer { min-height: 120px; }
-    }
+    :root { --navy:#1a3e6c; --blue:#298db5; --mint:#73afa3; --forest:#4f6656; --paper:#f6fbfa; --ink:#254457; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; font-family:Montserrat,Arial,sans-serif; color:var(--ink); background:var(--paper); overflow-x:hidden; }
+    .canopy { position:absolute; top:0; left:0; width:100%; max-height:390px; object-fit:cover; object-position:top center; opacity:.58; pointer-events:none; z-index:0; }
+    .page { position:relative; overflow:hidden; }
+    .container { width:min(1120px,calc(100% - 48px)); margin:auto; position:relative; z-index:1; }
+    .language { position:absolute; top:30px; right:max(28px,calc((100% - 1120px)/2)); z-index:3; display:flex; gap:4px; padding:5px; background:rgba(255,255,255,.86); box-shadow:0 8px 25px rgba(26,62,108,.12); border-radius:999px; }
+    .language button { border:0; background:transparent; color:var(--forest); font:700 12px Montserrat; padding:10px 12px; border-radius:999px; cursor:pointer; }
+    .language button.active { background:var(--navy); color:#fff; }
+    .hero { min-height:740px; padding:138px 0 70px; display:grid; grid-template-columns:1.12fr .88fr; gap:58px; align-items:center; }
+    .eyebrow { margin:0 0 16px; color:var(--blue); font-size:14px; letter-spacing:2px; font-weight:800; }
+    h1 { margin:0; max-width:700px; color:var(--navy); font-size:clamp(45px,5.2vw,68px); line-height:.97; letter-spacing:-3px; font-weight:800; text-shadow:-1px -1px 0 rgba(255,255,255,.94),1px -1px 0 rgba(255,255,255,.94),-1px 1px 0 rgba(255,255,255,.94),1px 1px 0 rgba(255,255,255,.94),0 8px 20px rgba(26,62,108,.12); }
+    .subtitle { margin:28px 0 25px; max-width:650px; color:var(--forest); font-size:22px; line-height:1.55; font-weight:700; }
+    .line { width:96px; height:4px; border-radius:9px; background:linear-gradient(90deg,var(--forest),#7bbfd8,var(--blue)); margin:28px 0; }
+    .intro { max-width:650px; font-size:17px; line-height:1.9; }
+    .intro p { margin:0 0 22px; }
+    .photo-wrap { position:relative; display:grid; place-items:center; transform:translateY(-28px); }
+    .photo-ring { position:absolute; width:440px; height:440px; border-radius:50%; background:linear-gradient(145deg,var(--mint),var(--blue)); opacity:.88; }
+    .profile { width:min(390px,90%); height:540px; position:relative; z-index:1; object-fit:cover; object-position:center; border:10px solid rgba(255,255,255,.9); border-radius:190px 190px 34px 34px; box-shadow:0 22px 42px rgba(26,62,108,.18); }
+    .quote { position:absolute; z-index:2; right:-10px; bottom:18px; width:205px; padding:18px; background:rgba(255,255,255,.93); border-radius:18px; color:var(--navy); font-size:13px; font-weight:700; line-height:1.55; box-shadow:0 12px 28px rgba(26,62,108,.16); }
+    .gallery { display:grid; grid-template-columns:1.15fr .75fr 1.15fr; align-items:center; gap:24px; padding:5px 0 105px; }
+    .gallery figure { margin:0; height:250px; border-radius:28px; overflow:hidden; box-shadow:0 17px 30px rgba(26,62,108,.14); background:#dcebea; }
+    .gallery figure:nth-child(2) { height:300px; }
+    .gallery img { width:100%; height:100%; object-fit:cover; display:block; transition:transform .35s; }
+    .gallery figure:hover img { transform:scale(1.05); }
+    .journey { padding:90px 0 115px; }
+    .section-tag { color:var(--blue); margin:0 0 14px; font-size:14px; letter-spacing:2px; font-weight:800; }
+    h2 { color:var(--navy); font-size:clamp(35px,4vw,50px); letter-spacing:-2px; margin:0 0 16px; line-height:1.05; }
+    .lead { margin:0; max-width:680px; font-size:18px; line-height:1.7; }
+    .timeline { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:58px; position:relative; }
+    .timeline:before { content:""; position:absolute; top:42px; left:12%; right:12%; height:3px; background:linear-gradient(90deg,var(--mint),var(--blue),var(--navy)); }
+    .year { position:relative; z-index:1; border:0; background:transparent; cursor:pointer; font-family:inherit; color:var(--ink); padding:0 5px; }
+    .year b { margin:auto; width:84px; height:84px; display:grid; place-items:center; border:7px solid white; border-radius:50%; color:white; background:var(--mint); box-shadow:0 10px 20px rgba(26,62,108,.18); font-size:18px; }
+    .year:nth-child(2) b { background:#538666; }.year:nth-child(3) b {background:#298db5;}.year:nth-child(4) b{background:#1a3e6c;}
+    .year span { display:block; margin-top:18px; font-size:14px; line-height:1.55; }
+    .year:hover b,.year.active b { transform:translateY(-6px); outline:3px solid rgba(41,141,181,.25); }
+    .detail { display:none; margin-top:46px; padding:28px 32px; background:white; border-left:5px solid var(--blue); border-radius:0 24px 24px 0; box-shadow:0 13px 30px rgba(26,62,108,.11); font-size:18px; line-height:1.75; }
+    .detail.show { display:block; }
+    .detail strong { color:var(--navy); }
+    .thanks { margin:10px 0 0; padding:70px; position:relative; overflow:hidden; border-radius:34px; color:white; background:linear-gradient(120deg,var(--navy),var(--blue)); }
+    .thanks:after { content:""; position:absolute; width:370px; height:370px; right:-130px; bottom:-210px; border:2px solid rgba(255,255,255,.19); border-radius:50%; box-shadow:0 0 0 35px rgba(255,255,255,.08),0 0 0 70px rgba(255,255,255,.06); }
+    .thanks-grid { display:grid; grid-template-columns:1.3fr .7fr; gap:55px; align-items:center; position:relative; z-index:1; }
+    .thanks h2 { color:white; font-size:42px; }.thanks p { font-size:17px; line-height:1.85; margin:0; }
+    .contact a { display:block; color:white; text-decoration:none; padding:16px 18px; margin:12px 0; border:1px solid rgba(255,255,255,.48); border-radius:14px; font-size:15px; transition:.2s; }
+    .contact a:hover { background:rgba(255,255,255,.16); transform:translateX(4px); }.contact small { display:block; margin-bottom:5px; opacity:.8; font-weight:700; font-size:11px; letter-spacing:1px; }
+    footer { padding:38px 24px 18px; text-align:center; font-size:13px; color:#617d73; }
+    .stream { display:block; width:100%; height:245px; object-fit:cover; object-position:center bottom; margin-top:0; }
+    @media(max-width:760px){ .container{width:min(100% - 34px,560px)} .canopy{width:160%;left:-30%;max-height:280px;object-fit:cover}.language{top:18px;right:17px}.hero{min-height:auto;padding:112px 0 65px;display:flex;flex-direction:column;gap:32px}.hero-copy{order:1}.photo-wrap{order:2;transform:translateY(-4px);width:100%}h1{font-size:44px;letter-spacing:-2px}.subtitle{font-size:19px;margin:22px 0}.intro{font-size:16px;line-height:1.8}.profile{height:445px;width:min(320px,86%)}.photo-ring{width:355px;height:355px}.quote{right:0;bottom:-4px;width:180px;font-size:12px}.gallery{grid-template-columns:1fr 1fr;gap:13px;padding:0 0 65px}.gallery figure{height:170px}.gallery figure:nth-child(2){height:170px}.gallery figure:nth-child(3){grid-column:1/-1;height:190px}.journey{padding:60px 0 75px}h2{font-size:36px}.lead{font-size:16px}.timeline{grid-template-columns:repeat(2,1fr);gap:27px 5px;margin-top:40px}.timeline:before{display:none}.year b{width:75px;height:75px;font-size:16px}.year span{font-size:12px;margin-top:11px}.detail{margin-top:32px;padding:22px;font-size:16px}.thanks{padding:42px 27px;border-radius:25px}.thanks-grid{grid-template-columns:1fr;gap:25px}.thanks h2{font-size:34px}.thanks p{font-size:16px}.stream{height:135px} }
   </style>
 </head>
-
 <body>
-  <img class="canopy-art" src="canopy-overlay.png" alt="" aria-hidden="true">
-
-  <div class="topbar">
-    <div class="languages">
-      <button class="language-btn active" data-lang="vi">VI</button>
-      <button class="language-btn" data-lang="en">EN</button>
-      <button class="language-btn" data-lang="fr">FR</button>
-    </div>
+  <div class="page">
+    <img class="canopy" src="canopy-overlay.png" alt="">
+    <nav class="language" aria-label="Chọn ngôn ngữ"><button class="active" data-lang="vi">VI</button><button data-lang="en">EN</button><button data-lang="fr">FR</button></nav>
+    <main class="container">
+      <section class="hero">
+        <div class="hero-copy"><p class="eyebrow" id="eyebrow">PERSONAL PORTFOLIO · 2026</p><h1 id="name">NGUYỄN THANH<br>NHẬT MINH</h1><p class="subtitle" id="subtitle">Sinh viên ngành Quản trị tại Đại học Kinh tế Thành phố Hồ Chí Minh.</p><div class="line"></div><div class="intro" id="intro"><p>Mình yêu thích ngành F&amp;B, bắt đầu từ một lý do rất giản dị: mình yêu những trải nghiệm ăn uống và ước mơ có đủ khả năng để thưởng thức những món mình thích, ở nhiều vùng đất khác nhau. Nhưng càng tìm hiểu, mình càng bị cuốn hút bởi một ngành đầy nhịp điệu: nơi con người, trải nghiệm khách hàng và hiệu quả vận hành cùng chuyển động mỗi ngày.</p><p>Mình theo đuổi các công việc về điều hành, quản trị, chiến lược và kiểm định. Với mình, Quản trị không hề chung chung; đó là nền tảng để hiểu một tổ chức vận hành ra sao, nhìn một vấn đề từ nhiều phía và biến ý tưởng thành kết quả. Mình có tham vọng, nhưng sẵn sàng bắt đầu từ những vị trí nhỏ nhất để thật sự hiểu công việc, con người và áp lực ở từng chặng đường.</p></div></div>
+        <div class="photo-wrap"><div class="photo-ring"></div><img class="profile" src="avatar.jpg" alt="Nguyễn Thanh Nhật Minh"><p class="quote" id="quote">Dòng nước không cần vội, nhưng luôn biết đường để chảy về phía trước.</p></div>
+      </section>
+      <section class="gallery" aria-label="Những lát cắt"><figure><img src="gallery-1.jpg" alt="Kỷ niệm"></figure><figure><img src="gallery-2.jpg" alt="Nguyễn Thanh Nhật Minh"></figure><figure><img src="gallery-3.jpg" alt="Trải nghiệm F&B"></figure></section>
+      <section class="journey"><p class="section-tag" id="journeyTag">A SMALL JOURNEY</p><h2 id="journeyTitle">Hành trình của mình</h2><p class="lead" id="journeyLead">Chạm vào từng cột mốc để mở ra một lát cắt trong hành trình của mình.</p><div class="timeline"><button class="year" data-year="2023"><b>2023</b><span id="y2023">Bước ra khỏi vùng quen thuộc để bắt đầu một hành trình mới.</span></button><button class="year" data-year="2024"><b>2024</b><span id="y2024">Những trải nghiệm mới lạ đầu tiên và sự trưởng thành từng ngày.</span></button><button class="year" data-year="2025"><b>2025</b><span id="y2025">Va vấp, nỗ lực và tích lũy những nền tảng đầu tiên.</span></button><button class="year" data-year="2026"><b>2026</b><span id="y2026">Chuẩn bị hành trang mới để bước vào chặng đường phía trước.</span></button></div><div class="detail" id="detail"></div></section>
+      <section class="thanks"><div class="thanks-grid"><div><p class="section-tag" id="thanksTag" style="color:#b6e8f5">A NOTE OF GRATITUDE</p><h2 id="thanksTitle">Cảm ơn vì đã dừng lại ở đây.</h2><p id="thanksText">Cảm ơn anh chị đã dành thời gian đọc đến đây. Việc anh chị ghé thăm trang web này có thể là một cơ hội nhỏ để mình được kể về hành trình, năng lực và những điều mình đang hướng tới. Mình trân trọng cơ hội đó, và hy vọng một ngày nào đó có thể đồng hành, học hỏi và tạo ra giá trị cùng anh chị. Chúc anh chị luôn vui vẻ, bình an và làm được những điều mình thật sự mong muốn.</p></div><div class="contact"><a href="mailto:nhatminhnoel05@gmail.com"><small>EMAIL</small>nhatminhnoel05@gmail.com</a><a href="https://www.linkedin.com/in/minh-nguyen-ueh/" target="_blank" rel="noopener"><small>LINKEDIN</small>minh-nguyen-ueh ↗</a></div></div></section>
+    </main>
+    <footer id="footer">© 2026 Nguyễn Thanh Nhật Minh · Được xây dựng bằng sự tò mò và một chút tham vọng.</footer>
+    <img class="stream" src="stream-footer.png" alt="Dòng suối trong rừng">
   </div>
-
-  <main class="container">
-    <section class="hero">
-      <div>
-        <p class="eyebrow" id="eyebrow"></p>
-        <h1 class="name"><span>NGUYỄN THANH</span><span>NHẬT MINH</span></h1>
-        <p class="subtitle" id="subtitle"></p>
-        <div class="line"></div>
-        <p class="intro" id="intro1"></p>
-        <p class="intro" id="intro2"></p>
-      </div>
-
-      <div class="photo-wrap">
-        <div class="photo-bg"></div>
-        <img class="profile-photo" src="avatar.jpg" alt="Nguyễn Thanh Nhật Minh">
-        <div class="quote" id="quote"></div>
-      </div>
-    </section>
-
-    <section class="visual-river" aria-label="Những lát cắt trong hành trình của Nguyễn Thanh Nhật Minh">
-      <figure class="visual-card">
-        <img src="gallery-1.jpg" alt="Khu rừng xanh">
-      </figure>
-      <figure class="visual-card portrait">
-        <img src="gallery-2.jpg" alt="Nguyễn Thanh Nhật Minh">
-      </figure>
-      <figure class="visual-card">
-        <img src="gallery-3.jpg" alt="Không gian cà phê">
-      </figure>
-    </section>
-
-    <section class="section" id="journey">
-      <p class="eyebrow" id="journey-eyebrow"></p>
-      <h2 class="section-title" id="journey-title"></h2>
-      <p class="section-lead" id="journey-lead"></p>
-
-      <div class="timeline">
-        <button class="year-btn" data-year="2023">
-          <span class="year-dot">2023</span>
-          <span class="year-summary"></span>
-        </button>
-
-        <button class="year-btn" data-year="2024">
-          <span class="year-dot">2024</span>
-          <span class="year-summary"></span>
-        </button>
-
-        <button class="year-btn" data-year="2025">
-          <span class="year-dot">2025</span>
-          <span class="year-summary"></span>
-        </button>
-
-        <button class="year-btn" data-year="2026">
-          <span class="year-dot">2026</span>
-          <span class="year-summary"></span>
-        </button>
-      </div>
-
-      <div class="year-detail is-hidden" id="year-detail"></div>
-    </section>
-
-    <section class="section">
-      <div class="contact-box">
-        <div class="contact-copy">
-          <p class="eyebrow">A NOTE OF GRATITUDE</p>
-          <h2 id="contact-title"></h2>
-          <p id="contact-text"></p>
-        </div>
-
-        <div class="contact-details">
-          <a class="contact-item" href="mailto:nhatminhnoel05@gmail.com">
-            <span>Email</span>
-            <strong>nhatminhnoel05@gmail.com</strong>
-          </a>
-          <a class="contact-item" href="https://www.linkedin.com/in/minh-nguyen-ueh/" target="_blank" rel="noopener">
-            <span>LinkedIn</span>
-            <strong>minh-nguyen-ueh ↗</strong>
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <footer id="footer"></footer>
-  </main>
-  <img class="stream-footer" src="stream-footer.png" alt="Dòng suối trong rừng">
-
   <script>
-    const content = {
-      vi: {
-        htmlLang: "vi",
-        eyebrow: "Personal portfolio · 2026",
-        subtitle: "Sinh viên ngành Quản trị tại Đại học Kinh tế Thành phố Hồ Chí Minh.",
-        intro1: "Mình yêu thích ngành F&B, bắt đầu từ một lý do rất giản dị: mình yêu những trải nghiệm ăn uống và ước mơ có đủ khả năng để thưởng thức những món mình thích, ở nhiều vùng đất khác nhau. Nhưng càng tìm hiểu, mình càng bị cuốn hút bởi một ngành đầy nhịp điệu: nơi con người, trải nghiệm khách hàng và hiệu quả vận hành cùng chuyển động mỗi ngày.",
-        intro2: "Mình theo đuổi các công việc về điều hành, quản trị, chiến lược và kiểm định. Với mình, Quản trị không hề chung chung; đó là nền tảng để hiểu một tổ chức vận hành ra sao, nhìn một vấn đề từ nhiều phía và biến ý tưởng thành kết quả. Mình có tham vọng, nhưng sẵn sàng bắt đầu từ những vị trí nhỏ nhất để thật sự hiểu công việc, con người và áp lực ở từng chặng đường. Mình không ngại khó khăn, miễn là công việc đó cho mình thêm một bài học đáng giá. Hy vọng những tham vọng ấy rồi sẽ trở thành ước mơ có thật, thay vì chỉ là những lời nói viển vông.",
-        quote: "Dòng nước không cần vội, nhưng luôn biết đường để chảy về phía trước.",
-        journeyEyebrow: "A small journey",
-        journeyTitle: "Hành trình của mình",
-        journeyLead: "Chạm vào từng cột mốc để mở ra một lát cắt trong hành trình của mình.",
-        years: {
-          2023: {
-            summary: "Bước ra khỏi vùng quen thuộc để bắt đầu một hành trình mới.",
-            detail: "Rời Trường THPT Nguyễn Khuyến để bước vào một môi trường hoàn toàn mới: Đại học Kinh tế Thành phố Hồ Chí Minh. Đây là điểm bắt đầu của sự độc lập, tò mò và những câu hỏi đầu tiên về tương lai."
-          },
-          2024: {
-            summary: "Những trải nghiệm mới lạ đầu tiên và sự trưởng thành từng ngày.",
-            detail: "Một năm của những trải nghiệm đầu tiên: học cách thích nghi với nhịp sống đại học, tham gia hoạt động tập thể và khám phá những điều mình có thể làm tốt hơn mỗi ngày."
-          },
-          2025: {
-            summary: "Va vấp, nỗ lực và tích lũy những nền tảng đầu tiên.",
-            detail: "Một năm của những va vấp cần thiết và những nỗ lực nghiêm túc để tích lũy. Mình bắt đầu có thêm trải nghiệm về nghiên cứu, dự án, đối ngoại, làm việc nhóm và hiểu rõ hơn điều mình muốn theo đuổi."
-          },
-          2026: {
-            summary: "Chuẩn bị hành trang mới để bước vào chặng đường phía trước.",
-            detail: "Năm cuối đại học, mình đang chuẩn bị hành trang để bước vào môi trường doanh nghiệp: học hỏi từ thực tập, hoàn thiện kỹ năng và xây dựng một định hướng nghề nghiệp rõ ràng hơn."
-          }
-        },
-        contactTitle: "Cảm ơn vì đã dừng lại ở đây.",
-        contactText: "Nếu anh chị đang đọc những dòng này sau khi xem CV của mình, cảm ơn anh chị vì đã dành thêm thời gian để hiểu về mình. Với mình, mỗi cơ hội được gặp gỡ, học hỏi và đóng góp đều rất đáng trân trọng. Hy vọng một ngày nào đó, mình có thể đồng hành cùng anh chị, làm việc tử tế và tạo ra những giá trị nhỏ nhưng thật sự có ý nghĩa. Chúc anh chị luôn vui, vững vàng và đi tới nơi mình mong muốn.",
-        footer: "© 2026 Nguyễn Thanh Nhật Minh · Được xây dựng bằng sự tò mò và một chút tham vọng."
-      },
-
-      en: {
-        htmlLang: "en",
-        eyebrow: "Personal portfolio · 2026",
-        subtitle: "Business Administration student at the University of Economics Ho Chi Minh City.",
-        intro1: "My interest in F&B began with something simple: I love food experiences and dream of having the freedom to enjoy the dishes I love in many different places. The more I learn, however, the more I am drawn to an industry full of rhythm, where people, customer experience, and operational effectiveness move together every day.",
-        intro2: "I am pursuing work in operations, management, strategy, and quality assurance. To me, Business Administration is far from generic; it is a foundation for understanding how an organisation works, seeing a problem from different perspectives, and turning ideas into results. I am ambitious, yet willing to start from the smallest role to truly understand the work, the people, and the pressure at every stage. I do not mind challenges as long as they teach me something worthwhile. I hope my ambition will become a real dream rather than just an empty statement.",
-        quote: "Water does not need to rush; it simply knows how to keep moving forward.",
-        journeyEyebrow: "A small journey",
-        journeyTitle: "My journey",
-        journeyLead: "Select a milestone to open a small chapter of my journey.",
-        years: {
-          2023: {
-            summary: "Leaving a familiar place to begin a new journey.",
-            detail: "I left Nguyen Khuyen High School and entered a completely new environment: the University of Economics Ho Chi Minh City. It was the beginning of independence, curiosity, and my first questions about the future."
-          },
-          2024: {
-            summary: "First new experiences and growth, one day at a time.",
-            detail: "A year of first experiences: learning to adapt to university life, joining collective activities, and discovering what I could do better every day."
-          },
-          2025: {
-            summary: "Challenges, effort, and the first foundations being built.",
-            detail: "A year of necessary challenges and serious effort. I gained experience in research, projects, external relations, teamwork, and a clearer understanding of the direction I want to pursue."
-          },
-          2026: {
-            summary: "Preparing for the next chapter.",
-            detail: "In my final year at university, I am preparing for the corporate environment through internships, skill-building, and a clearer professional direction."
-          }
-        },
-        contactTitle: "Thank you for pausing here.",
-        contactText: "If you are reading this after viewing my CV, thank you for giving me a little more time and the chance to share my story. Every opportunity to learn, contribute, and connect is meaningful to me. I hope that one day we can work together with kindness and create value that truly matters. I wish you joy, confidence, and the courage to reach the place you hope for.",
-        footer: "© 2026 Nguyễn Thanh Nhật Minh · Built with curiosity and a little ambition."
-      },
-
-      fr: {
-        htmlLang: "fr",
-        eyebrow: "Portfolio personnel · 2026",
-        subtitle: "Étudiante en management à l'Université d'Économie de Hô Chi Minh-Ville.",
-        intro1: "Mon intérêt pour la restauration et les boissons a commencé par quelque chose de simple : j'aime découvrir la gastronomie et je rêve d'avoir la liberté de goûter les plats que j'aime dans de nombreux endroits. Plus j'apprends, plus je suis attirée par un secteur rythmé, où les personnes, l'expérience client et l'efficacité opérationnelle évoluent ensemble chaque jour.",
-        intro2: "Je souhaite évoluer dans les domaines des opérations, du management, de la stratégie et du contrôle qualité. Pour moi, le management n'est pas un domaine vague ; il permet de comprendre le fonctionnement d'une organisation, d'observer un problème sous plusieurs angles et de transformer les idées en résultats. Je suis ambitieuse, mais prête à commencer par les plus petits rôles afin de comprendre réellement le travail, les personnes et les exigences de chaque étape. Je n'ai pas peur des difficultés, tant qu'elles m'apportent une leçon précieuse. J'espère que mon ambition deviendra un rêve concret, et non de simples paroles.",
-        quote: "L'eau n'a pas besoin de se presser ; elle sait simplement avancer.",
-        journeyEyebrow: "Un petit parcours",
-        journeyTitle: "Mon parcours",
-        journeyLead: "Choisissez une étape pour découvrir un petit chapitre de mon parcours.",
-        years: {
-          2023: {
-            summary: "Quitter un environnement familier pour commencer un nouveau parcours.",
-            detail: "J'ai quitté le lycée Nguyen Khuyen pour entrer dans un environnement entièrement nouveau : l'Université d'Économie de Hô Chi Minh-Ville. Ce fut le début de mon indépendance, de ma curiosité et de mes premières questions sur l'avenir."
-          },
-          2024: {
-            summary: "De premières expériences nouvelles et une croissance quotidienne.",
-            detail: "Une année de premières expériences : apprendre à m'adapter à la vie universitaire, participer à des activités collectives et découvrir ce que je pouvais améliorer chaque jour."
-          },
-          2025: {
-            summary: "Des défis, des efforts et les premières bases construites.",
-            detail: "Une année de défis nécessaires et d'efforts sérieux. J'ai acquis de l'expérience en recherche, en projets, en relations extérieures et en travail d'équipe, tout en clarifiant la voie que je souhaite suivre."
-          },
-          2026: {
-            summary: "Se préparer pour le prochain chapitre.",
-            detail: "Durant ma dernière année d'université, je me prépare au monde de l'entreprise grâce aux stages, au développement de mes compétences et à une orientation professionnelle plus claire."
-          }
-        },
-        contactTitle: "Merci de vous être arrêtée ici.",
-        contactText: "Si vous lisez ces lignes après avoir consulté mon CV, merci de m'accorder un peu plus de temps et l'occasion de partager mon histoire. Chaque occasion d'apprendre, de contribuer et de créer du lien compte beaucoup pour moi. J'espère qu'un jour nous pourrons collaborer avec bienveillance et créer une valeur qui a du sens. Je vous souhaite joie, confiance et le courage d'aller vers ce qui vous tient à cœur.",
-        footer: "© 2026 Nguyễn Thanh Nhật Minh · Créé avec curiosité et une touche d'ambition."
-      }
-    };
-
-    let currentLanguage = "vi";
-    let currentYear = null;
-
-    const yearButtons = document.querySelectorAll(".year-btn");
-    const languageButtons = document.querySelectorAll(".language-btn");
-
-    function renderPage() {
-      const text = content[currentLanguage];
-      document.documentElement.lang = text.htmlLang;
-      document.getElementById("eyebrow").textContent = text.eyebrow;
-      document.getElementById("subtitle").textContent = text.subtitle;
-      document.getElementById("intro1").textContent = text.intro1;
-      document.getElementById("intro2").textContent = text.intro2;
-      document.getElementById("quote").textContent = text.quote;
-      document.getElementById("journey-eyebrow").textContent = text.journeyEyebrow;
-      document.getElementById("journey-title").textContent = text.journeyTitle;
-      document.getElementById("journey-lead").textContent = text.journeyLead;
-      document.getElementById("contact-title").textContent = text.contactTitle;
-      document.getElementById("contact-text").textContent = text.contactText;
-      document.getElementById("footer").textContent = text.footer;
-
-      yearButtons.forEach((button) => {
-        const year = button.dataset.year;
-        button.querySelector(".year-summary").textContent = text.years[year].summary;
-      });
-
-      renderYearDetail();
-    }
-
-    function renderYearDetail() {
-      const detailBox = document.getElementById("year-detail");
-
-      if (!currentYear) {
-        detailBox.classList.add("is-hidden");
-        detailBox.innerHTML = "";
-        return;
-      }
-
-      const yearText = content[currentLanguage].years[currentYear];
-      detailBox.classList.remove("is-hidden");
-      detailBox.innerHTML = "<strong>" + currentYear + " — </strong>" + yearText.detail;
-    }
-
-    yearButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        yearButtons.forEach((item) => item.classList.remove("active"));
-        button.classList.add("active");
-        currentYear = button.dataset.year;
-        renderYearDetail();
-      });
-    });
-
-    languageButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        languageButtons.forEach((item) => item.classList.remove("active"));
-        button.classList.add("active");
-        currentLanguage = button.dataset.lang;
-        renderPage();
-      });
-    });
-
-    renderPage();
+    const data={vi:{name:'NGUYỄN THANH<br>NHẬT MINH',subtitle:'Sinh viên ngành Quản trị tại Đại học Kinh tế Thành phố Hồ Chí Minh.',quote:'Dòng nước không cần vội, nhưng luôn biết đường để chảy về phía trước.',tag:'A SMALL JOURNEY',title:'Hành trình của mình',lead:'Chạm vào từng cột mốc để mở ra một lát cắt trong hành trình của mình.',years:['Bước ra khỏi vùng quen thuộc để bắt đầu một hành trình mới.','Những trải nghiệm mới lạ đầu tiên và sự trưởng thành từng ngày.','Va vấp, nỗ lực và tích lũy những nền tảng đầu tiên.','Chuẩn bị hành trang mới để bước vào chặng đường phía trước.'],details:{2023:'<strong>2023 —</strong> Rời Trường THPT Nguyễn Khuyến để bước vào một môi trường hoàn toàn mới: Đại học Kinh tế Thành phố Hồ Chí Minh. Đây là điểm bắt đầu của sự độc lập, tò mò và những câu hỏi đầu tiên về tương lai.',2024:'<strong>2024 —</strong> Mở ra những trải nghiệm mới: học hỏi, kết nối và bắt đầu hiểu rõ hơn môi trường mình muốn theo đuổi.',2025:'<strong>2025 —</strong> Những va vấp và nỗ lực là cách mình tích lũy nền tảng, kiên nhẫn hơn với quá trình trưởng thành.',2026:'<strong>2026 —</strong> Chuẩn bị cho hành trang mới: sẵn sàng bước gần hơn tới công việc, trách nhiệm và những mục tiêu lớn hơn.'}},en:{name:'NGUYEN THANH<br>NHAT MINH',subtitle:'Business Administration student at the University of Economics Ho Chi Minh City.',quote:'Water does not need to hurry; it simply knows where to flow.',tag:'A SMALL JOURNEY',title:'My journey',lead:'Tap each milestone to reveal a small part of my journey.',years:['Leaving my comfort zone to begin a new journey.','First new experiences and daily growth.','Challenges, effort, and building my foundations.','Preparing for the road ahead.'],details:{2023:'<strong>2023 —</strong> I left Nguyen Khuyen High School and entered a new environment: the University of Economics Ho Chi Minh City.',2024:'<strong>2024 —</strong> A year of new experiences, connections and clearer direction.',2025:'<strong>2025 —</strong> Challenges and effort helped me build my first strong foundations.',2026:'<strong>2026 —</strong> Preparing for new responsibilities and bigger goals.'}},fr:{name:'NGUYEN THANH<br>NHAT MINH',subtitle:"Étudiante en gestion à l'Université d'Économie de Hô Chi Minh-Ville.",quote:"L'eau ne se presse pas ; elle sait simplement où aller.",tag:'UN PETIT VOYAGE',title:'Mon parcours',lead:'Touchez chaque étape pour découvrir une partie de mon parcours.',years:['Quitter ma zone de confort pour commencer un nouveau voyage.','De nouvelles expériences et une croissance quotidienne.','Défis, efforts et premières bases solides.','Préparer le chemin à venir.'],details:{2023:'<strong>2023 —</strong> J’ai quitté le lycée Nguyen Khuyen pour entrer à l’Université d’Économie de Hô Chi Minh-Ville.',2024:'<strong>2024 —</strong> Une année de nouvelles expériences et de rencontres.',2025:'<strong>2025 —</strong> Les défis et les efforts ont renforcé mes fondations.',2026:'<strong>2026 —</strong> Je me prépare à de nouvelles responsabilités et à de grands objectifs.'}}};
+    let lang='vi';const byId=id=>document.getElementById(id);function render(){let d=data[lang];byId('name').innerHTML=d.name;byId('subtitle').textContent=d.subtitle;byId('quote').textContent=d.quote;byId('journeyTag').textContent=d.tag;byId('journeyTitle').textContent=d.title;byId('journeyLead').textContent=d.lead;['2023','2024','2025','2026'].forEach((y,i)=>byId('y'+y).textContent=d.years[i]);byId('detail').className='detail';document.querySelectorAll('.year').forEach(x=>x.classList.remove('active'));}document.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>{lang=b.dataset.lang;document.querySelectorAll('[data-lang]').forEach(x=>x.classList.toggle('active',x===b));render();});document.querySelectorAll('.year').forEach(b=>b.onclick=()=>{let x=byId('detail');x.innerHTML=data[lang].details[b.dataset.year];x.className='detail show';document.querySelectorAll('.year').forEach(z=>z.classList.toggle('active',z===b));x.scrollIntoView({behavior:'smooth',block:'nearest'});});
   </script>
 </body>
 </html>
