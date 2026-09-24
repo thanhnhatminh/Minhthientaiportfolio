@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nguyễn Thanh Nhật Minh | Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --forest: #4F6656;
+      --sage: #73AFA3;
+      --leaf: #538666;
+      --mist: #7BBFD8;
+      --water: #298DB5;
+      --deep: #1A3E6C;
+      --cream: #F7FBFA;
+      --text: #183B45;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      font-family: "Montserrat", sans-serif;
+      background:
+        radial-gradient(circle at 8% 4%, rgba(123,191,216,.35), transparent 24rem),
+        radial-gradient(circle at 92% 18%, rgba(115,175,163,.20), transparent 25rem),
+        var(--cream);
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: absolute;
+      top: 26px;
+      left: 50%;
+      width: min(1120px, calc(100% - 40px));
+      display: flex;
+      justify-content: flex-end;
+      transform: translateX(-50%);
+      z-index: 10;
+    }
+
+    .languages {
+      display: flex;
+      gap: 6px;
+      padding: 5px;
+      border: 1px solid rgba(26,62,108,.12);
+      border-radius: 999px;
+      background: rgba(255,255,255,.72);
+      box-shadow: 0 8px 20px rgba(26,62,108,.08);
+      backdrop-filter: blur(8px);
+    }
+
+    .language-btn {
+      padding: 8px 12px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--forest);
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .language-btn.active {
+      color: white;
+      background: var(--deep);
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      align-items: center;
+      gap: 64px;
+      padding: 100px 0 72px;
+    }
+
+    .eyebrow {
+      margin: 0;
+      color: var(--water);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 16px 0;
+      color: var(--deep);
+      font-size: clamp(44px, 6vw, 82px);
+      line-height: .98;
+      letter-spacing: -3px;
+    }
+
+    .subtitle {
+      color: var(--forest);
+      font-size: clamp(16px, 2vw, 20px);
+      font-weight: 600;
+      line-height: 1.6;
+    }
+
+    .intro {
+      max-width: 655px;
+      margin-top: 24px;
+      font-size: 14px;
+      line-height: 1.95;
+    }
+
+    .line {
+      width: 84px;
+      height: 4px;
+      margin: 30px 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--leaf), var(--mist), var(--water));
+    }
+
+    .photo-wrap {
+      position: relative;
+      min-height: 480px;
+      display: grid;
+      place-items: center;
+    }
+
+    .photo-bg {
+      position: absolute;
+      width: min(420px, 88%);
+      aspect-ratio: 1 / 1.13;
+      border-radius: 48% 52% 42% 58% / 47% 43% 57% 53%;
+      background: linear-gradient(145deg, var(--sage), var(--water));
+      transform: rotate(7deg);
+    }
+
+    .profile-photo {
+      position: relative;
+      z-index: 1;
+      width: min(360px, 78%);
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: center;
+      border: 8px solid rgba(255,255,255,.76);
+      border-radius: 180px 180px 32px 32px;
+      box-shadow: 0 24px 50px rgba(26,62,108,.25);
+    }
+
+    .quote {
+      position: absolute;
+      z-index: 2;
+      right: 0;
+      bottom: 28px;
+      max-width: 180px;
+      padding: 16px;
+      color: var(--deep);
+      border-radius: 16px;
+      background: rgba(255,255,255,.88);
+      box-shadow: 0 12px 30px rgba(26,62,108,.12);
+      font-size: 11px;
+      font-weight: 600;
+      line-height: 1.65;
+    }
+
+    .section {
+      padding: 104px 0;
+    }
+
+    .section-title {
+      margin: 12px 0 14px;
+      color: var(--deep);
+      font-size: clamp(30px, 4vw, 46px);
+      letter-spacing: -1.5px;
+    }
+
+    .section-lead {
+      max-width: 720px;
+      margin: 0;
+      line-height: 1.85;
+    }
+
+    .timeline {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-top: 48px;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 41px;
+      right: 10%;
+      left: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, var(--forest), var(--mist), var(--water), var(--deep));
+    }
+
+    .year-btn {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      min-height: 166px;
+      padding: 0 10px;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      font-family: inherit;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    .year-dot {
+      width: 84px;
+      height: 84px;
+      display: grid;
+      place-items: center;
+      border: 7px solid var(--cream);
+      border-radius: 50%;
+      background: var(--sage);
+      color: white;
+      box-shadow: 0 5px 14px rgba(26,62,108,.16);
+      font-size: 17px;
+      font-weight: 800;
+      transition: .25s ease;
+    }
+
+    .year-btn:nth-child(2) .year-dot { background: var(--leaf); }
+    .year-btn:nth-child(3) .year-dot { background: var(--water); }
+    .year-btn:nth-child(4) .year-dot { background: var(--deep); }
+
+    .year-btn:hover .year-dot,
+    .year-btn.active .year-dot {
+      transform: translateY(-8px) scale(1.07);
+    }
+
+    .year-summary {
+      font-size: 11px;
+      font-weight: 500;
+      line-height: 1.65;
+    }
+
+    .year-detail {
+      min-height: 112px;
+      margin-top: 36px;
+      padding: 28px 30px;
+      border-left: 5px solid var(--water);
+      border-radius: 0 18px 18px 0;
+      background: white;
+      box-shadow: 0 12px 30px rgba(26,62,108,.08);
+      line-height: 1.85;
+    }
+
+    .year-detail strong {
+      color: var(--deep);
+    }
+
+    .contact-box {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 30px;
+      padding: clamp(30px, 5vw, 56px);
+      border-radius: 30px;
+      color: white;
+      background: linear-gradient(135deg, var(--deep), var(--water));
+    }
+
+    .contact-box h2 {
+      margin: 0 0 12px;
+      font-size: clamp(30px, 4vw, 44px);
+      letter-spacing: -1.5px;
+    }
+
+    .contact-box p {
+      max-width: 590px;
+      margin: 0;
+      color: rgba(255,255,255,.9);
+      font-size: 14px;
+      line-height: 1.9;
+    }
+
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .links a {
+      padding: 13px 18px;
+      border: 1px solid rgba(255,255,255,.5);
+      border-radius: 999px;
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
+      text-decoration: none;
+      transition: .2s ease;
+    }
+
+    .links a:hover {
+      color: var(--deep);
+      background: white;
+    }
+
+    footer {
+      padding: 42px 0 52px;
+      color: var(--forest);
+      font-size: 12px;
+      line-height: 1.9;
+      text-align: center;
+    }
+
+    @media (max-width: 760px) {
+      .topbar { top: 16px; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding-top: 90px;
+      }
+
+      .photo-wrap {
+        min-height: 380px;
+        grid-row: 1;
+      }
+
+      .quote { right: 4%; }
+
+      .timeline {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px 10px;
+      }
+
+      .timeline::before { display: none; }
+
+      .contact-box { grid-template-columns: 1fr; }
+
+      .links { align-items: stretch; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="languages">
+      <button class="language-btn active" data-lang="vi">VI</button>
+      <button class="language-btn" data-lang="en">EN</button>
+      <button class="language-btn" data-lang="fr">FR</button>
+    </div>
+  </div>
+
+  <main class="container">
+    <section class="hero">
+      <div>
+        <p class="eyebrow" id="eyebrow"></p>
+        <h1>NGUYỄN<br>THANH NHẬT MINH</h1>
+        <p class="subtitle" id="subtitle"></p>
+        <div class="line"></div>
+        <p class="intro" id="intro1"></p>
+        <p class="intro" id="intro2"></p>
+      </div>
+
+      <div class="photo-wrap">
+        <div class="photo-bg"></div>
+        <img class="profile-photo" src="avatar.jpg" alt="Nguyễn Thanh Nhật Minh">
+        <div class="quote" id="quote"></div>
+      </div>
+    </section>
+
+    <section class="section" id="journey">
+      <p class="eyebrow" id="journey-eyebrow"></p>
+      <h2 class="section-title" id="journey-title"></h2>
+      <p class="section-lead" id="journey-lead"></p>
+
+      <div class="timeline">
+        <button class="year-btn active" data-year="2023">
+          <span class="year-dot">2023</span>
+          <span class="year-summary"></span>
+        </button>
+
+        <button class="year-btn" data-year="2024">
+          <span class="year-dot">2024</span>
+          <span class="year-summary"></span>
+        </button>
+
+        <button class="year-btn" data-year="2025">
+          <span class="year-dot">2025</span>
+          <span class="year-summary"></span>
+        </button>
+
+        <button class="year-btn" data-year="2026">
+          <span class="year-dot">2026</span>
+          <span class="year-summary"></span>
+        </button>
+      </div>
+
+      <div class="year-detail" id="year-detail"></div>
+    </section>
+
+    <section class="section">
+      <div class="contact-box">
+        <div>
+          <h2 id="contact-title"></h2>
+          <p id="contact-text"></p>
+        </div>
+
+        <div class="links">
+          <a href="mailto:nhatminhnoel05@gmail.com">Email</a>
+          <a href="https://www.linkedin.com/in/minh-nguyen-ueh/" target="_blank">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+    <footer id="footer"></footer>
+  </main>
+
+  <script>
+    const content = {
+      vi: {
+        htmlLang: "vi",
+        eyebrow: "Personal portfolio · 2026",
+        subtitle: "Sinh viên ngành Quản trị tại Đại học Kinh tế Thành phố Hồ Chí Minh.",
+        intro1: "Mình yêu thích ngành F&B, bắt đầu từ một lý do rất giản dị: mình yêu những trải nghiệm ăn uống và ước mơ có đủ khả năng để thưởng thức những món mình thích, ở nhiều vùng đất khác nhau. Nhưng càng tìm hiểu, mình càng bị cuốn hút bởi một ngành đầy nhịp điệu: nơi con người, trải nghiệm khách hàng và hiệu quả vận hành cùng chuyển động mỗi ngày.",
+        intro2: "Mình theo đuổi các công việc về điều hành, quản trị, chiến lược và kiểm định. Với mình, Quản trị không hề chung chung; đó là nền tảng để hiểu một tổ chức vận hành ra sao, nhìn một vấn đề từ nhiều phía và biến ý tưởng thành kết quả. Mình có tham vọng, nhưng sẵn sàng bắt đầu từ những vị trí nhỏ nhất để thật sự hiểu công việc, con người và áp lực ở từng chặng đường. Mình không ngại khó khăn, miễn là công việc đó cho mình thêm một bài học đáng giá. Hy vọng những tham vọng ấy rồi sẽ trở thành ước mơ có thật, thay vì chỉ là những lời nói viển vông.",
+        quote: "Dòng nước không cần vội, nhưng luôn biết đường để chảy về phía trước.",
+        journeyEyebrow: "A small journey",
+        journeyTitle: "Hành trình của mình",
+        journeyLead: "Bốn năm là bốn trạng thái khác nhau: bắt đầu, khám phá, va vấp và chuẩn bị. Nhấn vào từng năm để xem hành trình chi tiết của mình.",
+        years: {
+          2023: {
+            summary: "Bước ra khỏi vùng quen thuộc để bắt đầu một hành trình mới.",
+            detail: "Rời Trường THPT Nguyễn Khuyến để bước vào một môi trường hoàn toàn mới: Đại học Kinh tế Thành phố Hồ Chí Minh. Đây là điểm bắt đầu của sự độc lập, tò mò và những câu hỏi đầu tiên về tương lai."
+          },
+          2024: {
+            summary: "Những trải nghiệm mới lạ đầu tiên và sự trưởng thành từng ngày.",
+            detail: "Một năm của những trải nghiệm đầu tiên: học cách thích nghi với nhịp sống đại học, tham gia hoạt động tập thể và khám phá những điều mình có thể làm tốt hơn mỗi ngày."
+          },
+          2025: {
+            summary: "Va vấp, nỗ lực và tích lũy những nền tảng đầu tiên.",
+            detail: "Một năm của những va vấp cần thiết và những nỗ lực nghiêm túc để tích lũy. Mình bắt đầu có thêm trải nghiệm về nghiên cứu, dự án, đối ngoại, làm việc nhóm và hiểu rõ hơn điều mình muốn theo đuổi."
+          },
+          2026: {
+            summary: "Chuẩn bị hành trang mới để bước vào chặng đường phía trước.",
+            detail: "Năm cuối đại học, mình đang chuẩn bị hành trang để bước vào môi trường doanh nghiệp: học hỏi từ thực tập, hoàn thiện kỹ năng và xây dựng một định hướng nghề nghiệp rõ ràng hơn."
+          }
+        },
+        contactTitle: "Cảm ơn vì đã ghé thăm.",
+        contactText: "Cảm ơn anh chị đã dành thời gian đọc đến đây. Việc anh chị ghé thăm trang web này có thể là một cơ hội nhỏ để mình được kể về hành trình, năng lực và những điều mình đang hướng tới. Mình trân trọng cơ hội đó, và hy vọng một ngày nào đó có thể đồng hành, học hỏi và tạo ra giá trị cùng anh chị. Chúc anh chị luôn vui vẻ, bình an và làm được những điều mình thật sự mong muốn.",
+        footer: "© 2026 Nguyễn Thanh Nhật Minh · Được xây dựng bằng sự tò mò và một chút tham vọng."
+      },
+
+      en: {
+        htmlLang: "en",
+        eyebrow: "Personal portfolio · 2026",
+        subtitle: "Business Administration student at the University of Economics Ho Chi Minh City.",
+        intro1: "My interest in F&B began with something simple: I love food experiences and dream of having the freedom to enjoy the dishes I love in many different places. The more I learn, however, the more I am drawn to an industry full of rhythm, where people, customer experience, and operational effectiveness move together every day.",
+        intro2: "I am pursuing work in operations, management, strategy, and quality assurance. To me, Business Administration is far from generic; it is a foundation for understanding how an organisation works, seeing a problem from different perspectives, and turning ideas into results. I am ambitious, yet willing to start from the smallest role to truly understand the work, the people, and the pressure at every stage. I do not mind challenges as long as they teach me something worthwhile. I hope my ambition will become a real dream rather than just an empty statement.",
+        quote: "Water does not need to rush; it simply knows how to keep moving forward.",
+        journeyEyebrow: "A small journey",
+        journeyTitle: "My journey",
+        journeyLead: "Four years, four different states: beginning, exploring, learning through challenges, and preparing. Click each year to explore my journey.",
+        years: {
+          2023: {
+            summary: "Leaving a familiar place to begin a new journey.",
+            detail: "I left Nguyen Khuyen High School and entered a completely new environment: the University of Economics Ho Chi Minh City. It was the beginning of independence, curiosity, and my first questions about the future."
+          },
+          2024: {
+            summary: "First new experiences and growth, one day at a time.",
+            detail: "A year of first experiences: learning to adapt to university life, joining collective activities, and discovering what I could do better every day."
+          },
+          2025: {
+            summary: "Challenges, effort, and the first foundations being built.",
+            detail: "A year of necessary challenges and serious effort. I gained experience in research, projects, external relations, teamwork, and a clearer understanding of the direction I want to pursue."
+          },
+          2026: {
+            summary: "Preparing for the next chapter.",
+            detail: "In my final year at university, I am preparing for the corporate environment through internships, skill-building, and a clearer professional direction."
+          }
+        },
+        contactTitle: "Thank you for visiting.",
+        contactText: "Thank you for taking the time to read this page. Your visit may be a small opportunity for me to share my journey, capabilities, and aspirations. I truly appreciate it, and I hope that one day I can learn, collaborate, and create value with you. I wish you happiness, peace, and the courage to pursue what truly matters to you.",
+        footer: "© 2026 Nguyễn Thanh Nhật Minh · Built with curiosity and a little ambition."
+      },
+
+      fr: {
+        htmlLang: "fr",
+        eyebrow: "Portfolio personnel · 2026",
+        subtitle: "Étudiante en management à l'Université d'Économie de Hô Chi Minh-Ville.",
+        intro1: "Mon intérêt pour la restauration et les boissons a commencé par quelque chose de simple : j'aime découvrir la gastronomie et je rêve d'avoir la liberté de goûter les plats que j'aime dans de nombreux endroits. Plus j'apprends, plus je suis attirée par un secteur rythmé, où les personnes, l'expérience client et l'efficacité opérationnelle évoluent ensemble chaque jour.",
+        intro2: "Je souhaite évoluer dans les domaines des opérations, du management, de la stratégie et du contrôle qualité. Pour moi, le management n'est pas un domaine vague ; il permet de comprendre le fonctionnement d'une organisation, d'observer un problème sous plusieurs angles et de transformer les idées en résultats. Je suis ambitieuse, mais prête à commencer par les plus petits rôles afin de comprendre réellement le travail, les personnes et les exigences de chaque étape. Je n'ai pas peur des difficultés, tant qu'elles m'apportent une leçon précieuse. J'espère que mon ambition deviendra un rêve concret, et non de simples paroles.",
+        quote: "L'eau n'a pas besoin de se presser ; elle sait simplement avancer.",
+        journeyEyebrow: "Un petit parcours",
+        journeyTitle: "Mon parcours",
+        journeyLead: "Quatre années, quatre étapes : commencer, explorer, apprendre à travers les défis et se préparer. Cliquez sur chaque année pour découvrir mon parcours.",
+        years: {
+          2023: {
+            summary: "Quitter un environnement familier pour commencer un nouveau parcours.",
+            detail: "J'ai quitté le lycée Nguyen Khuyen pour entrer dans un environnement entièrement nouveau : l'Université d'Économie de Hô Chi Minh-Ville. Ce fut le début de mon indépendance, de ma curiosité et de mes premières questions sur l'avenir."
+          },
+          2024: {
+            summary: "De premières expériences nouvelles et une croissance quotidienne.",
+            detail: "Une année de premières expériences : apprendre à m'adapter à la vie universitaire, participer à des activités collectives et découvrir ce que je pouvais améliorer chaque jour."
+          },
+          2025: {
+            summary: "Des défis, des efforts et les premières bases construites.",
+            detail: "Une année de défis nécessaires et d'efforts sérieux. J'ai acquis de l'expérience en recherche, en projets, en relations extérieures et en travail d'équipe, tout en clarifiant la voie que je souhaite suivre."
+          },
+          2026: {
+            summary: "Se préparer pour le prochain chapitre.",
+            detail: "Durant ma dernière année d'université, je me prépare au monde de l'entreprise grâce aux stages, au développement de mes compétences et à une orientation professionnelle plus claire."
+          }
+        },
+        contactTitle: "Merci de votre visite.",
+        contactText: "Merci d'avoir pris le temps de lire cette page. Votre visite est peut-être une petite occasion pour moi de partager mon parcours, mes compétences et mes aspirations. Je l'apprécie sincèrement et j'espère qu'un jour nous pourrons apprendre, collaborer et créer de la valeur ensemble. Je vous souhaite beaucoup de joie, de sérénité et la force de réaliser ce qui compte vraiment pour vous.",
+        footer: "© 2026 Nguyễn Thanh Nhật Minh · Créé avec curiosité et une touche d'ambition."
+      }
+    };
+
+    let currentLanguage = "vi";
+    let currentYear = "2023";
+
+    const yearButtons = document.querySelectorAll(".year-btn");
+    const languageButtons = document.querySelectorAll(".language-btn");
+
+    function renderPage() {
+      const text = content[currentLanguage];
+      document.documentElement.lang = text.htmlLang;
+      document.getElementById("eyebrow").textContent = text.eyebrow;
+      document.getElementById("subtitle").textContent = text.subtitle;
+      document.getElementById("intro1").textContent = text.intro1;
+      document.getElementById("intro2").textContent = text.intro2;
+      document.getElementById("quote").textContent = text.quote;
+      document.getElementById("journey-eyebrow").textContent = text.journeyEyebrow;
+      document.getElementById("journey-title").textContent = text.journeyTitle;
+      document.getElementById("journey-lead").textContent = text.journeyLead;
+      document.getElementById("contact-title").textContent = text.contactTitle;
+      document.getElementById("contact-text").textContent = text.contactText;
+      document.getElementById("footer").textContent = text.footer;
+
+      yearButtons.forEach((button) => {
+        const year = button.dataset.year;
+        button.querySelector(".year-summary").textContent = text.years[year].summary;
+      });
+
+      renderYearDetail();
+    }
+
+    function renderYearDetail() {
+      const yearText = content[currentLanguage].years[currentYear];
+      document.getElementById("year-detail").innerHTML =
+        "<strong>" + currentYear + " — </strong>" + yearText.detail;
+    }
+
+    yearButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        yearButtons.forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+        currentYear = button.dataset.year;
+        renderYearDetail();
+      });
+    });
+
+    languageButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        languageButtons.forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+        currentLanguage = button.dataset.lang;
+        renderPage();
+      });
+    });
+
+    renderPage();
+  </script>
+</body>
+</html>
