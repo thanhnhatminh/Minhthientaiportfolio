@@ -101,9 +101,14 @@
     h1 {
       margin: 16px 0;
       color: var(--deep);
-      font-size: clamp(44px, 6vw, 82px);
+      font-size: clamp(42px, 4.5vw, 68px);
       line-height: .98;
       letter-spacing: -3px;
+    }
+
+    .name span {
+      display: block;
+      white-space: nowrap;
     }
 
     .subtitle {
@@ -269,15 +274,68 @@
       color: var(--deep);
     }
 
-    .contact-box {
+    .year-detail.is-hidden {
+      display: none;
+    }
+
+    .visual-river {
       display: grid;
-      grid-template-columns: 1fr auto;
+      grid-template-columns: 1.15fr .8fr 1.15fr;
+      gap: 18px;
+      margin: 0 0 32px;
+    }
+
+    .visual-card {
+      height: 285px;
+      margin: 0;
+      overflow: hidden;
+      border-radius: 28px;
+      box-shadow: 0 18px 38px rgba(26,62,108,.14);
+    }
+
+    .visual-card:nth-child(1) { margin-top: 32px; }
+    .visual-card:nth-child(3) { margin-top: 58px; }
+
+    .visual-card img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform .55s ease;
+    }
+
+    .visual-card:hover img { transform: scale(1.06); }
+    .visual-card.portrait img { object-position: center 34%; }
+
+    .contact-box {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
       align-items: center;
-      gap: 30px;
+      gap: 54px;
       padding: clamp(30px, 5vw, 56px);
       border-radius: 30px;
       color: white;
       background: linear-gradient(135deg, var(--deep), var(--water));
+      overflow: hidden;
+    }
+
+    .contact-box::after {
+      content: "";
+      position: absolute;
+      right: -120px;
+      bottom: -170px;
+      width: 330px;
+      height: 330px;
+      border: 1px solid rgba(255,255,255,.24);
+      border-radius: 50%;
+      box-shadow: 0 0 0 38px rgba(255,255,255,.05), 0 0 0 76px rgba(255,255,255,.04);
+    }
+
+    .contact-copy,
+    .contact-details {
+      position: relative;
+      z-index: 1;
     }
 
     .contact-box h2 {
@@ -294,27 +352,86 @@
       line-height: 1.9;
     }
 
-    .links {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
+    .contact-details {
+      display: grid;
+      gap: 14px;
     }
 
-    .links a {
-      padding: 13px 18px;
-      border: 1px solid rgba(255,255,255,.5);
-      border-radius: 999px;
+    .contact-item {
+      display: block;
+      padding: 18px 20px;
+      border: 1px solid rgba(255,255,255,.28);
+      border-radius: 18px;
       color: white;
-      font-size: 12px;
-      font-weight: 700;
-      text-align: center;
       text-decoration: none;
-      transition: .2s ease;
+      background: rgba(255,255,255,.12);
+      transition: transform .25s ease, background .25s ease;
     }
 
-    .links a:hover {
-      color: var(--deep);
-      background: white;
+    .contact-item:hover {
+      transform: translateY(-4px);
+      background: rgba(255,255,255,.2);
+    }
+
+    .contact-item span {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.3px;
+      opacity: .75;
+      text-transform: uppercase;
+    }
+
+    .contact-item strong {
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    .canopy {
+      position: fixed;
+      z-index: -1;
+      top: -35px;
+      width: 240px;
+      height: 250px;
+      opacity: .35;
+      pointer-events: none;
+    }
+
+    .canopy::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      width: 2px;
+      height: 245px;
+      background: var(--forest);
+      transform: rotate(-32deg);
+      transform-origin: top;
+    }
+
+    .canopy.right { right: -38px; transform: scaleX(-1); }
+    .canopy.left { left: -38px; }
+
+    .canopy i {
+      position: absolute;
+      width: 48px;
+      height: 24px;
+      display: block;
+      border-radius: 100% 0 100% 0;
+      background: linear-gradient(135deg, var(--leaf), var(--sage));
+      transform-origin: 8px 20px;
+      animation: sway 5s ease-in-out infinite alternate;
+    }
+
+    .canopy i:nth-child(1) { top: 26px; left: 68px; transform: rotate(-28deg); }
+    .canopy i:nth-child(2) { top: 64px; left: 104px; transform: rotate(20deg); animation-delay: -1.1s; }
+    .canopy i:nth-child(3) { top: 104px; left: 48px; transform: rotate(-40deg); animation-delay: -2.2s; }
+    .canopy i:nth-child(4) { top: 136px; left: 116px; transform: rotate(18deg); animation-delay: -.5s; }
+    .canopy i:nth-child(5) { top: 174px; left: 76px; transform: rotate(-30deg); animation-delay: -1.7s; }
+
+    @keyframes sway {
+      from { translate: -2px 0; rotate: -3deg; }
+      to { translate: 5px 6px; rotate: 4deg; }
     }
 
     footer {
@@ -350,12 +467,29 @@
 
       .contact-box { grid-template-columns: 1fr; }
 
-      .links { align-items: stretch; }
+      .visual-river {
+        grid-template-columns: 1fr;
+        margin-bottom: 0;
+      }
+
+      .visual-card,
+      .visual-card:nth-child(1),
+      .visual-card:nth-child(3) {
+        height: 240px;
+        margin-top: 0;
+      }
+
+      .name span { white-space: normal; }
+
+      .canopy { opacity: .2; }
     }
   </style>
 </head>
 
 <body>
+  <div class="canopy left" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  <div class="canopy right" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+
   <div class="topbar">
     <div class="languages">
       <button class="language-btn active" data-lang="vi">VI</button>
@@ -368,7 +502,7 @@
     <section class="hero">
       <div>
         <p class="eyebrow" id="eyebrow"></p>
-        <h1>NGUYỄN<br>THANH NHẬT MINH</h1>
+        <h1 class="name"><span>NGUYỄN THANH</span><span>NHẬT MINH</span></h1>
         <p class="subtitle" id="subtitle"></p>
         <div class="line"></div>
         <p class="intro" id="intro1"></p>
@@ -382,13 +516,25 @@
       </div>
     </section>
 
+    <section class="visual-river" aria-label="Những lát cắt trong hành trình của Nguyễn Thanh Nhật Minh">
+      <figure class="visual-card">
+        <img src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1000&q=85" alt="Khu rừng xanh">
+      </figure>
+      <figure class="visual-card portrait">
+        <img src="avatar.jpg" alt="Nguyễn Thanh Nhật Minh">
+      </figure>
+      <figure class="visual-card">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1000&q=85" alt="Không gian cà phê">
+      </figure>
+    </section>
+
     <section class="section" id="journey">
       <p class="eyebrow" id="journey-eyebrow"></p>
       <h2 class="section-title" id="journey-title"></h2>
       <p class="section-lead" id="journey-lead"></p>
 
       <div class="timeline">
-        <button class="year-btn active" data-year="2023">
+        <button class="year-btn" data-year="2023">
           <span class="year-dot">2023</span>
           <span class="year-summary"></span>
         </button>
@@ -409,19 +555,26 @@
         </button>
       </div>
 
-      <div class="year-detail" id="year-detail"></div>
+      <div class="year-detail is-hidden" id="year-detail"></div>
     </section>
 
     <section class="section">
       <div class="contact-box">
-        <div>
+        <div class="contact-copy">
+          <p class="eyebrow">A NOTE OF GRATITUDE</p>
           <h2 id="contact-title"></h2>
           <p id="contact-text"></p>
         </div>
 
-        <div class="links">
-          <a href="mailto:nhatminhnoel05@gmail.com">Email</a>
-          <a href="https://www.linkedin.com/in/minh-nguyen-ueh/" target="_blank">LinkedIn</a>
+        <div class="contact-details">
+          <a class="contact-item" href="mailto:nhatminhnoel05@gmail.com">
+            <span>Email</span>
+            <strong>nhatminhnoel05@gmail.com</strong>
+          </a>
+          <a class="contact-item" href="https://www.linkedin.com/in/minh-nguyen-ueh/" target="_blank" rel="noopener">
+            <span>LinkedIn</span>
+            <strong>minh-nguyen-ueh ↗</strong>
+          </a>
         </div>
       </div>
     </section>
@@ -440,7 +593,7 @@
         quote: "Dòng nước không cần vội, nhưng luôn biết đường để chảy về phía trước.",
         journeyEyebrow: "A small journey",
         journeyTitle: "Hành trình của mình",
-        journeyLead: "Bốn năm là bốn trạng thái khác nhau: bắt đầu, khám phá, va vấp và chuẩn bị. Nhấn vào từng năm để xem hành trình chi tiết của mình.",
+        journeyLead: "Chạm vào từng cột mốc để mở ra một lát cắt trong hành trình của mình.",
         years: {
           2023: {
             summary: "Bước ra khỏi vùng quen thuộc để bắt đầu một hành trình mới.",
@@ -459,8 +612,8 @@
             detail: "Năm cuối đại học, mình đang chuẩn bị hành trang để bước vào môi trường doanh nghiệp: học hỏi từ thực tập, hoàn thiện kỹ năng và xây dựng một định hướng nghề nghiệp rõ ràng hơn."
           }
         },
-        contactTitle: "Cảm ơn vì đã ghé thăm.",
-        contactText: "Cảm ơn anh chị đã dành thời gian đọc đến đây. Việc anh chị ghé thăm trang web này có thể là một cơ hội nhỏ để mình được kể về hành trình, năng lực và những điều mình đang hướng tới. Mình trân trọng cơ hội đó, và hy vọng một ngày nào đó có thể đồng hành, học hỏi và tạo ra giá trị cùng anh chị. Chúc anh chị luôn vui vẻ, bình an và làm được những điều mình thật sự mong muốn.",
+        contactTitle: "Cảm ơn vì đã dừng lại ở đây.",
+        contactText: "Nếu anh chị đang đọc những dòng này sau khi xem CV của mình, cảm ơn anh chị vì đã dành thêm thời gian để hiểu về mình. Với mình, mỗi cơ hội được gặp gỡ, học hỏi và đóng góp đều rất đáng trân trọng. Hy vọng một ngày nào đó, mình có thể đồng hành cùng anh chị, làm việc tử tế và tạo ra những giá trị nhỏ nhưng thật sự có ý nghĩa. Chúc anh chị luôn vui, vững vàng và đi tới nơi mình mong muốn.",
         footer: "© 2026 Nguyễn Thanh Nhật Minh · Được xây dựng bằng sự tò mò và một chút tham vọng."
       },
 
@@ -473,7 +626,7 @@
         quote: "Water does not need to rush; it simply knows how to keep moving forward.",
         journeyEyebrow: "A small journey",
         journeyTitle: "My journey",
-        journeyLead: "Four years, four different states: beginning, exploring, learning through challenges, and preparing. Click each year to explore my journey.",
+        journeyLead: "Select a milestone to open a small chapter of my journey.",
         years: {
           2023: {
             summary: "Leaving a familiar place to begin a new journey.",
@@ -492,8 +645,8 @@
             detail: "In my final year at university, I am preparing for the corporate environment through internships, skill-building, and a clearer professional direction."
           }
         },
-        contactTitle: "Thank you for visiting.",
-        contactText: "Thank you for taking the time to read this page. Your visit may be a small opportunity for me to share my journey, capabilities, and aspirations. I truly appreciate it, and I hope that one day I can learn, collaborate, and create value with you. I wish you happiness, peace, and the courage to pursue what truly matters to you.",
+        contactTitle: "Thank you for pausing here.",
+        contactText: "If you are reading this after viewing my CV, thank you for giving me a little more time and the chance to share my story. Every opportunity to learn, contribute, and connect is meaningful to me. I hope that one day we can work together with kindness and create value that truly matters. I wish you joy, confidence, and the courage to reach the place you hope for.",
         footer: "© 2026 Nguyễn Thanh Nhật Minh · Built with curiosity and a little ambition."
       },
 
@@ -506,7 +659,7 @@
         quote: "L'eau n'a pas besoin de se presser ; elle sait simplement avancer.",
         journeyEyebrow: "Un petit parcours",
         journeyTitle: "Mon parcours",
-        journeyLead: "Quatre années, quatre étapes : commencer, explorer, apprendre à travers les défis et se préparer. Cliquez sur chaque année pour découvrir mon parcours.",
+        journeyLead: "Choisissez une étape pour découvrir un petit chapitre de mon parcours.",
         years: {
           2023: {
             summary: "Quitter un environnement familier pour commencer un nouveau parcours.",
@@ -525,14 +678,14 @@
             detail: "Durant ma dernière année d'université, je me prépare au monde de l'entreprise grâce aux stages, au développement de mes compétences et à une orientation professionnelle plus claire."
           }
         },
-        contactTitle: "Merci de votre visite.",
-        contactText: "Merci d'avoir pris le temps de lire cette page. Votre visite est peut-être une petite occasion pour moi de partager mon parcours, mes compétences et mes aspirations. Je l'apprécie sincèrement et j'espère qu'un jour nous pourrons apprendre, collaborer et créer de la valeur ensemble. Je vous souhaite beaucoup de joie, de sérénité et la force de réaliser ce qui compte vraiment pour vous.",
+        contactTitle: "Merci de vous être arrêtée ici.",
+        contactText: "Si vous lisez ces lignes après avoir consulté mon CV, merci de m'accorder un peu plus de temps et l'occasion de partager mon histoire. Chaque occasion d'apprendre, de contribuer et de créer du lien compte beaucoup pour moi. J'espère qu'un jour nous pourrons collaborer avec bienveillance et créer une valeur qui a du sens. Je vous souhaite joie, confiance et le courage d'aller vers ce qui vous tient à cœur.",
         footer: "© 2026 Nguyễn Thanh Nhật Minh · Créé avec curiosité et une touche d'ambition."
       }
     };
 
     let currentLanguage = "vi";
-    let currentYear = "2023";
+    let currentYear = null;
 
     const yearButtons = document.querySelectorAll(".year-btn");
     const languageButtons = document.querySelectorAll(".language-btn");
@@ -561,9 +714,17 @@
     }
 
     function renderYearDetail() {
+      const detailBox = document.getElementById("year-detail");
+
+      if (!currentYear) {
+        detailBox.classList.add("is-hidden");
+        detailBox.innerHTML = "";
+        return;
+      }
+
       const yearText = content[currentLanguage].years[currentYear];
-      document.getElementById("year-detail").innerHTML =
-        "<strong>" + currentYear + " — </strong>" + yearText.detail;
+      detailBox.classList.remove("is-hidden");
+      detailBox.innerHTML = "<strong>" + currentYear + " — </strong>" + yearText.detail;
     }
 
     yearButtons.forEach((button) => {
